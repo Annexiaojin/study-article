@@ -15,5 +15,5 @@ mybatis-plus:
     # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
     call-setters-on-nulls: true
 user:
-  id: 3
+  id: 4
   userName: 锖青磁

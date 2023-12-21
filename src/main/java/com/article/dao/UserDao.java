@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserDao {
     @Select("select * from user")
     List<User> queryAll();
-    @Insert("insert into user values (#{id},#{name})")
+    @Insert("insert into user values (#{id},#{userName})")
     void insertUser(UserProperties userProperties);
     @Select("select * from user where id = #{id}")
     User queryOne(int id);
