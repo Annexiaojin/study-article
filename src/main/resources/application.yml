@@ -6,6 +6,9 @@ spring:
     password: 1234
     url: jdbc:mysql://localhost:3306/study-article
     driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    com.article.dao: debug
 mybatis-plus:
   #mapper文件的路径
   mapper-locations: classpath:mapper/*.xml
