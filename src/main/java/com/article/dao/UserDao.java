@@ -13,6 +13,8 @@ public interface UserDao {
     List<User> queryAll();
     @Insert("insert into user values (#{id},#{userName})")
     void insertUser(UserProperties userProperties);
-    @Select("select * from user where id = #{id}")
-    User queryOne(int id);
+    @Select("select * from user where name = #{name} and password = #{password} ")
+    User queryOne(User user);
+    @Select("select * from user where name = #{userName} ")
+    User queryByName(String userName);
 }

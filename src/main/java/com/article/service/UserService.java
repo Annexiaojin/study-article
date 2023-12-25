@@ -10,5 +10,5 @@ public interface UserService {
 
     void insertUser(UserProperties userProperties);
 
-    User queryOne(int id);
+    User queryOne(User user);
 }

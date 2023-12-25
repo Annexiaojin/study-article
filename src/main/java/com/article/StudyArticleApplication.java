@@ -2,12 +2,10 @@ package com.article;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+/*不自动配置数据库连接*/
 
-@SpringBootApplication
-@MapperScan(basePackages = "com.article.dao")
+@SpringBootApplication/*自动扫描启动类所在的包及其子包*/
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class StudyArticleApplication {
     public static void main(String[] args) {
