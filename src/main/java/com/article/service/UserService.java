@@ -11,4 +11,7 @@ public interface UserService {
     void insertUser(UserProperties userProperties);
 
     User queryOne(User user);
+    User queryByName(User user);
+
+    void register(User user);
 }

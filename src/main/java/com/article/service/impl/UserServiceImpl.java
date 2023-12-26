@@ -34,4 +34,14 @@ public class UserServiceImpl implements UserService {
     public User queryOne(User user) {
         return userDao.queryOne(user);
     }
+
+    @Override
+    public User queryByName(User user) {
+        return userDao.queryByName(user.getName());
+    }
+
+    @Override
+    public void register(User user) {
+        userDao.register(user);
+    }
 }

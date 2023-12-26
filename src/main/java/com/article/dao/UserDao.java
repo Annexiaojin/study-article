@@ -17,4 +17,6 @@ public interface UserDao {
     User queryOne(User user);
     @Select("select * from user where name = #{userName} ")
     User queryByName(String userName);
+    @Insert("insert into user(name,password,create_time) values (#{name},#{password},now())")
+    void register(User user);
 }
