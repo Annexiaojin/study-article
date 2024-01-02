@@ -6,16 +6,16 @@ import com.article.properties.UserProperties;
 import com.article.service.UserService;
 import com.article.utils.JwtUtil;
 import com.article.utils.Md5Util;
+import com.article.utils.ThreadLocalUtil;
 import com.auth0.jwt.JWT;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @Validated
@@ -52,5 +52,13 @@ public class UserController {
             return Result.success(token);
         }
         return Result.error("密码错误");
+    }
+    @GetMapping("/userInfo")
+    public Result<User> userInfo(/*@RequestHeader("Authorization") String token*/){
+        Map<String,Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("userName");
+        User user = User.builder().name(username).build();
+        User user1 = userService.queryByName(user);
+        return Result.success(user1);
     }
 }

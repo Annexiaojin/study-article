@@ -38,5 +38,21 @@ public class StudyArticleApplicationTests {
        Map<String, Claim> claims = decodedJWT.getClaims();
        System.out.println(claims.get("user"));
    }
+   @Test
+   public void ThreadLocalSetAndGet(){
+      ThreadLocal<Object> t1 = new ThreadLocal<>();
+      new Thread(()->{
+         t1.set("小陈");
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+      },"蓝色").start();
+      new Thread(()->{
+         t1.set("小王");
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+         System.out.println(Thread.currentThread().getName()+":"+t1.get());
+      },"红色").start();
+   }
 
 }
