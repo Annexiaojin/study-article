@@ -5,11 +5,18 @@ import com.article.entity.Result;
 import com.article.entity.User;
 import com.article.properties.UserProperties;
 import com.article.service.UserService;
+import com.article.utils.Md5Util;
+import com.article.utils.ThreadLocalUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -43,5 +50,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(User user) {
         userDao.register(user);
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdateTime(LocalDate.now());
+        userDao.update(user);
+    }
+
+    @Override
+    public void updateAvator(String url) {
+        Map<String,Object> map = ThreadLocalUtil.get();
+        Integer id = (Integer) map.get("id");
+        userDao.updateAvator(url,id);
+    }
+
+    @Override
+    public void updatePwd(String newPwd) {
+        Map<String,Object> map = ThreadLocalUtil.get();
+        Integer id = (Integer) map.get("id");
+        userDao.updatePwd(Md5Util.encryptToMD5(newPwd),id);
     }
 }
